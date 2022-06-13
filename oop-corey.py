@@ -226,3 +226,35 @@ frlix = Student('Frlix', 'Tran', 1000)
 
 # print(repr(frlix)) Student(fist_name=Frlix, last_name=Tran, money=1000)
 # print(str(frlix)) # Frlix Tran - Money: 1000
+
+#
+
+#
+
+# Getters, Setters and Deleters
+class Student:
+  def __init__(self, first_name, last_name):
+    self.first_name = first_name
+    self.last_name = last_name
+
+  @property
+  def full_name(self):
+    return f'{self.first_name} {self.last_name}'
+
+  @full_name.setter
+  def full_name(self, new_name):
+    self.first_name, self.last_name = new_name.split(' ')
+  
+  @full_name.deleter
+  def full_name(self):
+    self.first_name = None
+    self.last_name = None
+
+
+frlix = Student('Frlix', 'Tran')
+
+# print(frlix.full_name) # Frlix Tran
+# frlix.full_name = 'Ky Tran'
+# print(frlix.full_name) # Ky Tran
+# del frlix.full_name
+# print(frlix.full_name) # None None
