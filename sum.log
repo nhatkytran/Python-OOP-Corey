@@ -1,0 +1,2 @@
+INFO:root:Ran with args: (10,), and kwargs: {'b': 20}
+INFO:root:Ran with args: (), and kwargs: {}

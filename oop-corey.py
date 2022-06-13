@@ -60,3 +60,85 @@ frlix = Student('Frlix', 'Tran', 1000)
 # new frlix instance uses its own attribute raise_value
 
 #
+
+#
+
+# @classmethod and @staticmethod
+
+class Student:
+  
+  raise_value = 1.3
+
+  def __init__(self, first_name, last_name, money):
+    self.first_name = first_name
+    self.last_name = last_name
+    self.money = money
+  
+  def get_full_name(self):
+    return f'{self.first_name} {self.last_name}'
+
+  def raise_money(self):
+    self.money = int(self.money * self.raise_value)
+  
+  @classmethod
+  def set_raise_value(cls, new_value):
+    cls.raise_value = new_value
+
+  @classmethod
+  def from_string_hyphen(cls, string_hyphen):
+
+    def string_to_int(item):
+      try:
+        return int(item)
+      except ValueError:
+        return item
+
+    items = map(string_to_int, string_hyphen.split('-'))
+    return cls(*items)
+  
+  @staticmethod
+  def is_dayoff(day):
+    if day.weekday() == 5 or day.weekday() == 6:
+      return True
+    return False
+
+
+# There are 3 methods:
+# 1. Regular method: Automatically pass 'self' as the first argument
+# 2. Class method: Automatically pass 'class' as the first argument
+# 3. Static method: Don't automatically pass any thing as the first argument
+
+# Note: Use class method to set new value and use class method as constructor
+
+# frlix = Student('Frlix', 'Tran', 1000)
+# ky = Student('Ky', 'Tran', 1000)
+
+# print(Student.raise_value) # 1.3
+# print(frlix.raise_value) # 1.3
+# print(ky.raise_value) # 1.3
+
+# Instead of using Student.raise_value
+# Use class method
+
+# Student.set_raise_value(1.5)
+
+# print(Student.raise_value) # 1.5
+# print(frlix.raise_value) # 1.5
+# print(ky.raise_value) # 1.5
+
+# frlix_infor = 'Frlix-Tran-1000'
+# Student.from_string_hyphen(frlix_infor)
+
+# print(frlix.first_name) # Frlix
+# print(frlix.last_name) # Tran
+# print(frlix.money) # 1000
+# print(type(frlix.money)) # <class 'int'>
+
+# Use static method when you don't need to use 'self' or 'class'
+
+# import datetime
+
+# new_date = datetime.date(2022 ,6 ,12) # True
+# new_date = datetime.date(2022 ,6 ,13) # False
+
+# print(Student.is_dayoff(new_date))
