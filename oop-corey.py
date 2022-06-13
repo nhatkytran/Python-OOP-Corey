@@ -1,5 +1,4 @@
 class Student:
-  
   raise_value = 1.3
   total_student = 0
   # Class variables are for all instances
@@ -66,7 +65,6 @@ frlix = Student('Frlix', 'Tran', 1000)
 # @classmethod and @staticmethod
 
 class Student:
-  
   raise_value = 1.3
 
   def __init__(self, first_name, last_name, money):
@@ -142,3 +140,49 @@ class Student:
 # new_date = datetime.date(2022 ,6 ,13) # False
 
 # print(Student.is_dayoff(new_date))
+
+#
+
+#
+
+# Inheritance and Subclasses
+
+class Student:
+  raise_value = 1.3
+
+  def __init__(self, first_name, last_name, money):
+    self.first_name = first_name
+    self.last_name = last_name
+    self.money = money
+  
+  def get_full_name(self):
+    return f'{self.first_name} {self.last_name}'
+
+  def raise_money(self):
+    self.money = int(self.money * self.raise_value)
+
+
+class SpecialStudent(Student):
+  def __init__(self, first_name, last_name, money, languages=None):
+    super().__init__(first_name, last_name, money)
+    # Student.__init__(self, first_name, last_name, money)
+    # Use super for matainability purposes
+    if languages is None:
+      self.languages = []
+    else:
+      self.languages = languages
+
+  def get_languages(self):
+    for language in self.languages:
+      print(language)
+
+
+frlix = SpecialStudent('Frlix', 'Tran', 1000, ['Python', 'JavaScript'])
+
+# frlix.get_languages()
+# Python
+# JavaScript
+
+# print(isinstance(frlix, SpecialStudent)) # True
+# print(isinstance(frlix, Student)) # True
+# print(issubclass(SpecialStudent, Student)) # True
