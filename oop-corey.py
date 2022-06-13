@@ -186,3 +186,43 @@ frlix = SpecialStudent('Frlix', 'Tran', 1000, ['Python', 'JavaScript'])
 # print(isinstance(frlix, SpecialStudent)) # True
 # print(isinstance(frlix, Student)) # True
 # print(issubclass(SpecialStudent, Student)) # True
+
+#
+
+#
+
+# dunder methods
+
+class Student:
+  raise_value = 1.3
+
+  def __init__(self, first_name, last_name, money):
+    self.first_name = first_name
+    self.last_name = last_name
+    self.money = money
+  
+  def get_full_name(self):
+    return f'{self.first_name} {self.last_name}'
+
+  def raise_money(self):
+    self.money = int(self.money * self.raise_value)
+
+  def __repr__(self):
+    return f'{self.__class__.__name__}(fist_name={self.first_name}, last_name={self.last_name}, money={self.money})'
+
+  def information(self):
+    return f'{self.first_name} {self.last_name} - Money: {self.money}'
+  
+  __str__ = information
+
+# Note:
+# __repr__ is to be ambiguous
+# __str__ is to be readable
+
+# __repr__ dunder has the idea of indenpotance
+
+
+frlix = Student('Frlix', 'Tran', 1000)
+
+# print(repr(frlix)) Student(fist_name=Frlix, last_name=Tran, money=1000)
+# print(str(frlix)) # Frlix Tran - Money: 1000
